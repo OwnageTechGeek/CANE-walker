@@ -27,12 +27,8 @@ case "$1" in
         $0 stop
         $0 start
         ;;
-    status)
-        ### Maybe reference pulse audio monitoring.  But probably not entirely necessary.
-        log_end_msg $?
-        ;;
     *)
-        echo "Usage: $0 {start|stop|restart|status}"
+        echo "Usage: $0 {start|stop|restart}"
         exit 2
         ;;
 esac
