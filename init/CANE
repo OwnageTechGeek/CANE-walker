@@ -15,9 +15,7 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 NAME=cane
-DAEMON=/home/pi/CANE/python.py
-DAEMONARGS=""
-PIDFILE=/var/run/$NAME.pid
+FILE=/home/pi/CANE/startCane.sh
 LOGFILE=/var/log/$NAME.log
 
 . /lib/lsb/init-functions
@@ -26,26 +24,17 @@ test -f $DAEMON || exit 0
 
 case "$1" in
     start)
-        start-stop-daemon --start --background \
-            --pidfile $PIDFILE --make-pidfile --startas /bin/bash \
-            -- -c "exec stdbuf -oL -eL $DAEMON $DAEMONARGS > $LOGFILE 2>&1"
-        log_end_msg $?
+        /bin/bash /home/pi/CANE/startCane.sh
         ;;
     stop)
-        start-stop-daemon --stop --pidfile $PIDFILE
-        log_end_msg $?
-        rm -f $PIDFILE
+        killall python*
         ;;
     restart)
         $0 stop
         $0 start
         ;;
-    status)
-        start-stop-daemon --status --pidfile $PIDFILE
-        log_end_msg $?
-        ;;
     *)
-        echo "Usage: $0 {start|stop|restart|status}"
+        echo "Usage: $0 {start|stop|restart}"
         exit 2
         ;;
 esac
