@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# init script for CANE-SOUND
+#
+
+### BEGIN INIT INFO
+# Provides:          CANE
+# Required-Start:    $remote_fs $syslog $network
+# Required-Stop:     $remote_fs $syslog $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: init script for CANE-SOUND
+# Description:       Handles automatic CANE-SOUND initation.
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+NAME=cane-sound
+LOGFILE=/var/log/$NAME.log
+
+case "$1" in
+    start)
+        sdjskldjaskld > LOGFILE
+        ;;
+    stop)
+        djasdjaskldjaskl 
+    restart)
+        $0 stop
+        $0 start
+        ;;
+    status)
+        ### Maybe reference pulse audio monitoring.  But probably not entirely necessary.
+        log_end_msg $?
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 2
+        ;;
+esac
+
+exit 0
