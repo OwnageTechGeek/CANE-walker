@@ -24,6 +24,7 @@ test -f $DAEMON || exit 0
 
 case "$1" in
     start)
+        sleep 30s ###Prevents race condition with CANE-SOUND.  Without this, CANE-SOUND could potentially not be up.
         /bin/bash /home/pi/CANE/startCane.sh
         ;;
     stop)
